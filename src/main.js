@@ -117,6 +117,7 @@ window.saveCompany = async function() {
         updateCompany()
         return
     }
+
     const companyName = document.getElementById('companyName').value.trim()
     const hasDba = document.getElementById('hasDba').value
     const dbaName = document.getElementById('dbaName').value.trim()
@@ -136,6 +137,40 @@ window.saveCompany = async function() {
     if (!city) { alert('City is required.'); return }
     if (!state) { alert('State is required.'); return }
     if (!/^\d{5}$/.test(zip)) { alert('Zip Code must be exactly 5 digits.'); return }
+
+    // Check for duplicate Company Name
+    const { data: existingCompanyName, error: companyNameError } = await supabase
+        .from('companies')
+        .select('id')
+        .ilike('company_name', companyName)
+        .is('deleted_at', null)
+
+    if (companyNameError) {
+        alert('Error checking for duplicates: ' + companyNameError.message)
+        return
+    }
+
+    if (existingCompanyName && existingCompanyName.length > 0) {
+        alert('A company with this name already exists. Please use a different name.')
+        return
+    }
+
+    // Check for duplicate DBA Name
+    const { data: existingDbaName, error: dbaNameError } = await supabase
+        .from('companies')
+        .select('id')
+        .ilike('dba_name', dbaName)
+        .is('deleted_at', null)
+
+    if (dbaNameError) {
+        alert('Error checking for duplicates: ' + dbaNameError.message)
+        return
+    }
+
+    if (existingDbaName && existingDbaName.length > 0) {
+        alert('A company with this DBA name already exists. Please use a different DBA name.')
+        return
+    }
 
     // Generate company ID
     const companyId = generateCompanyId()
@@ -329,7 +364,7 @@ window.editCompany = async function(id) {
     document.getElementById('addCompanyView').classList.remove('hidden')
 }
 
-// Update company (modify the saveCompany function)
+// Update company
 window.updateCompany = async function() {
     const companyName = document.getElementById('companyName').value.trim()
     const hasDba = document.getElementById('hasDba').value
@@ -350,6 +385,42 @@ window.updateCompany = async function() {
     if (!city) { alert('City is required.'); return }
     if (!state) { alert('State is required.'); return }
     if (!/^\d{5}$/.test(zip)) { alert('Zip Code must be exactly 5 digits.'); return }
+
+    // Check for duplicate Company Name (exclude current record)
+    const { data: existingCompanyName, error: companyNameError } = await supabase
+        .from('companies')
+        .select('id')
+        .ilike('company_name', companyName)
+        .is('deleted_at', null)
+        .neq('id', window.editingCompanyId)
+
+    if (companyNameError) {
+        alert('Error checking for duplicates: ' + companyNameError.message)
+        return
+    }
+
+    if (existingCompanyName && existingCompanyName.length > 0) {
+        alert('A company with this name already exists. Please use a different name.')
+        return
+    }
+
+    // Check for duplicate DBA Name (exclude current record)
+    const { data: existingDbaName, error: dbaNameError } = await supabase
+        .from('companies')
+        .select('id')
+        .ilike('dba_name', dbaName)
+        .is('deleted_at', null)
+        .neq('id', window.editingCompanyId)
+
+    if (dbaNameError) {
+        alert('Error checking for duplicates: ' + dbaNameError.message)
+        return
+    }
+
+    if (existingDbaName && existingDbaName.length > 0) {
+        alert('A company with this DBA name already exists. Please use a different DBA name.')
+        return
+    }
 
     const { error } = await supabase
         .from('companies')
