@@ -1,0 +1,386 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  padding: 20px;
+  margin: 0;
+  color: #333;
+}
+
+.portal-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #003399;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0 15px 0;
+  color: #333;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #003399;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: #002a75;
+}
+
+.btn-secondary {
+  background: #666;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.btn-secondary:hover {
+  background: #555;
+}
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin-top: 10px;
+  table-layout: auto;
+}
+
+.data-table thead {
+  background: #003399;
+  color: white;
+}
+
+.data-table th {
+  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.data-table td:last-child {
+  border-right: none;
+  white-space: nowrap;
+  padding: 6px 10px;
+}
+
+.data-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #333;
+}
+
+.data-table td:last-child {
+  border-right: none;
+  white-space: nowrap;
+}
+
+.data-table tr:hover td {
+  background: #eef3ff;
+}
+
+/* Center the add company view */
+#addCompanyView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#addCompanyView h2 {
+  text-align: center;
+  color: #003399;
+  margin-bottom: 20px;
+}
+
+/* Form */
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  width: 600px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-row label.required::after {
+  content: " *";
+  color: red;
+}
+
+.form-row input,
+.form-row select {
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.form-buttons {
+  margin-top: 20px;
+}
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .portal-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .form-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .form-row input,
+  .form-row select {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 14px;
+    font-size: 14px;
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .btn-secondary {
+    margin-left: 0;
+  }
+
+  .form-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #addCompanyView {
+    padding: 0 10px;
+  }
+
+  #addCompanyView h2 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .portal-title {
+    font-size: 20px;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+}
+/* Back Button in Form */
+.btn-back-form {
+  background: #003399;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.btn-back-form:hover {
+  background: #002a75;
+}
+
+/* Action Buttons */
+.btn-view {
+  background: #006515;
+  color: white;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.btn-view:hover {
+  background: #002c0b;
+}
+
+.btn-edit {
+  background: #ffc107;
+  color: #000;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.btn-edit:hover {
+  background: #956c00;
+}
+
+.btn-delete {
+  background: #980111;
+  color: white;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.btn-delete:hover {
+  background: #71000d;
+}
+/* View Details */
+#viewCompanyView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#viewCompanyView h2 {
+  text-align: center;
+  color: #003399;
+  margin-bottom: 20px;
+}
+
+.detail-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  width: 600px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+  font-weight: bold;
+  width: 150px;
+  color: #333;
+}
+
+.detail-value {
+  flex: 1;
+  color: #555;
+}
+/* Deleted Items View */
+#deletedItemsView {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#deletedItemsView h2 {
+  color: #003399;
+  margin-bottom: 10px;
+}
+
+.deleted-info {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* View Deleted Items Button */
+.btn-deleted {
+  background: #6c757d;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.btn-deleted:hover {
+  background: #5a6268;
+}
+
+/* Restore Button */
+.btn-restore {
+  background: #006515;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.btn-restore:hover {
+  background: #002c0b;
+}

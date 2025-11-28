@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HR Portal</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Main View: Companies List -->
+  <div id="companiesView">
+    <h1 class="portal-title">HR Portal</h1>
+
+    <button class="btn-primary" onclick="showAddCompany()">Add Company</button>
+    <button class="btn-deleted" onclick="showDeletedItems()">View Deleted Items</button>
+
+    <h2 class="section-title">Companies</h2>
+    <table id="companiesTable" class="data-table">
+      <thead>
+      <tr>
+        <th>Company ID</th>
+        <th>Company Name</th>
+        <th>DBA</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th>Modified By</th>
+        <th>Modified At</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Data loads here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add Company View -->
+  <div id="addCompanyView" class="hidden">
+  <h2>Add New Company</h2>
+    <div class="form-container">
+      <!-- Step 1: Company Name -->
+      <div class="form-row">
+        <label class="required">Company Name</label>
+        <input type="text" id="companyName" oninput="checkCompanyName()">
+      </div>
+
+      <!-- Step 2: Has DBA (hidden until company name filled) -->
+      <div id="dbaSection" class="hidden">
+        <div class="form-row">
+          <label class="required">Has DBA?</label>
+          <select id="hasDba" onchange="handleDbaChange()">
+            <option value="">-- Select --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div id="dbaNameRow" class="form-row hidden">
+          <label class="required">DBA Name</label>
+          <input type="text" id="dbaName">
+        </div>
+      </div>
+
+      <!-- Step 3: Rest of fields (hidden until DBA answered) -->
+      <div id="restOfFields" class="hidden">
+        <div class="form-row">
+          <label class="required">Phone (###) ###-####</label>
+          <input type="text" id="companyPhone" placeholder="(555) 123-4567" oninput="formatPhoneNumber(this)">        </div>
+        <div class="form-row">
+          <label class="required">Address Line 1</label>
+          <input type="text" id="addressLine1">
+        </div>
+        <div class="form-row">
+          <label>Address Line 2</label>
+          <input type="text" id="addressLine2">
+        </div>
+        <div class="form-row">
+          <label class="required">City</label>
+          <input type="text" id="city">
+        </div>
+        <div class="form-row">
+          <label class="required">State</label>
+          <select id="state">
+            <option value="">-- Select --</option>
+            <option value="AL">AL</option>
+            <option value="AK">AK</option>
+            <option value="AZ">AZ</option>
+            <option value="AR">AR</option>
+            <option value="CA">CA</option>
+            <option value="CO">CO</option>
+            <option value="CT">CT</option>
+            <option value="DE">DE</option>
+            <option value="FL">FL</option>
+            <option value="GA">GA</option>
+            <option value="HI">HI</option>
+            <option value="ID">ID</option>
+            <option value="IL">IL</option>
+            <option value="IN">IN</option>
+            <option value="IA">IA</option>
+            <option value="KS">KS</option>
+            <option value="KY">KY</option>
+            <option value="LA">LA</option>
+            <option value="ME">ME</option>
+            <option value="MD">MD</option>
+            <option value="MA">MA</option>
+            <option value="MI">MI</option>
+            <option value="MN">MN</option>
+            <option value="MS">MS</option>
+            <option value="MO">MO</option>
+            <option value="MT">MT</option>
+            <option value="NE">NE</option>
+            <option value="NV">NV</option>
+            <option value="NH">NH</option>
+            <option value="NJ">NJ</option>
+            <option value="NM">NM</option>
+            <option value="NY">NY</option>
+            <option value="NC">NC</option>
+            <option value="ND">ND</option>
+            <option value="OH">OH</option>
+            <option value="OK">OK</option>
+            <option value="OR">OR</option>
+            <option value="PA">PA</option>
+            <option value="RI">RI</option>
+            <option value="SC">SC</option>
+            <option value="SD">SD</option>
+            <option value="TN">TN</option>
+            <option value="TX">TX</option>
+            <option value="UT">UT</option>
+            <option value="VT">VT</option>
+            <option value="VA">VA</option>
+            <option value="WA">WA</option>
+            <option value="WV">WV</option>
+            <option value="WI">WI</option>
+            <option value="WY">WY</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="required">Zip Code (5 digits)</label>
+          <input type="text" id="zip" maxlength="5">
+        </div>
+        <div class="form-buttons">
+          <button class="btn-back-form" onclick="showCompanies()">← Back</button>
+          <button class="btn-primary" onclick="saveCompany()">Save Company</button>
+          <button class="btn-secondary" onclick="showCompanies()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Cancel button always visible -->
+      <div id="cancelOnly" class="form-buttons">
+        <button class="btn-back-form" onclick="showCompanies()">← Back</button>
+        <button class="btn-secondary" onclick="showCompanies()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!-- View Company View -->
+  <div id="viewCompanyView" class="hidden">
+    <h2>Company Details</h2>
+    <div class="detail-container">
+      <div class="detail-row">
+        <span class="detail-label">Company ID:</span>
+        <span id="viewCompanyId" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Company Name:</span>
+        <span id="viewCompanyName" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Has DBA:</span>
+        <span id="viewHasDba" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">DBA Name:</span>
+        <span id="viewDbaName" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Phone:</span>
+        <span id="viewPhone" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Address Line 1:</span>
+        <span id="viewAddress1" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Address Line 2:</span>
+        <span id="viewAddress2" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">City:</span>
+        <span id="viewCity" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">State:</span>
+        <span id="viewState" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Zip:</span>
+        <span id="viewZip" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Created By:</span>
+        <span id="viewCreatedBy" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Created At:</span>
+        <span id="viewCreatedAt" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Modified By:</span>
+        <span id="viewModifiedBy" class="detail-value"></span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Modified At:</span>
+        <span id="viewModifiedAt" class="detail-value"></span>
+      </div>
+      <div class="form-buttons">
+        <button class="btn-back-form" onclick="showCompanies()">← Back</button>
+        <button class="btn-edit" onclick="editCompanyFromView()">Edit</button>
+      </div>
+    </div>
+  </div>
+  <!-- Deleted Items View -->
+  <div id="deletedItemsView" class="hidden">
+    <h2>Deleted Companies</h2>
+    <p class="deleted-info">Items will be permanently deleted after 30 days.</p>
+    <table id="deletedTable" class="data-table">
+      <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Deleted On</th>
+        <th>Days Left</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Data loads here -->
+      </tbody>
+    </table>
+    <div class="form-buttons" style="margin-top: 20px;">
+      <button class="btn-back-form" onclick="showCompaniesFromDeleted()">← Back</button>
+    </div>
+  </div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
