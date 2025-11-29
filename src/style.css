@@ -155,7 +155,7 @@ body {
 
 .form-row input,
 .form-row select {
-  padding: 6px;
+  padding: 16px;
   font-size: 18px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -212,25 +212,23 @@ h3 {
 .detail-row {
   display: flex;
   flex-direction: column;
-  padding: 12px 15px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  border-left: 3px solid #003399;
+  margin-bottom: 20px;
 }
 
 .detail-label {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .detail-value {
-  font-size: 15px;
+  padding: 6px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  background: #f9f9f9;
   color: #333;
-  font-weight: 500;
 }
 
 /* Detail Section Titles */
@@ -394,8 +392,8 @@ h3 {
 
   .form-row input,
   .form-row select {
-    padding: 6px !important;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 16px;
   }
 
   .btn-primary,
