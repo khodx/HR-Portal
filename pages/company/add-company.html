@@ -213,9 +213,15 @@
                     </div>
                 </div>
 
+                <!-- Save buttons (shown when form is complete) -->
                 <div class="form-buttons">
+                    <button class="btn-back-form" onclick="window.location.href='/'">Back</button>
+                    <button class="btn-secondary" onclick="window.location.href='/'">Cancel</button>
+                    <button class="btn-primary" onclick="saveCompany()">Save Company</button>
+                </div>
+            </div>
 
-            <!-- Cancel button always visible -->
+            <!-- Cancel button always visible (before rest of form shows) -->
             <div id="cancelOnly" class="form-buttons">
                 <button class="btn-back-form" onclick="window.location.href='/'">Back</button>
                 <button class="btn-secondary" onclick="window.location.href='/'">Cancel</button>
