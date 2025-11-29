@@ -44,6 +44,14 @@ async function loadCompany() {
     document.getElementById('viewCity').textContent = data.city
     document.getElementById('viewState').textContent = data.state
     document.getElementById('viewZip').textContent = data.zip
+    document.getElementById('viewMailingSame').textContent = data.mailing_same_as_physical || '-'
+    document.getElementById('viewMailingAddress1').textContent = data.mailing_address_line1 || '-'
+    document.getElementById('viewMailingAddress2').textContent = data.mailing_address_line2 || '-'
+    document.getElementById('viewMailingCity').textContent = data.mailing_city || '-'
+    document.getElementById('viewMailingState').textContent = data.mailing_state || '-'
+    document.getElementById('viewMailingZip').textContent = data.mailing_zip || '-'
+    document.getElementById('viewEin').textContent = data.ein || '-'
+    document.getElementById('viewPayrollTax').textContent = data.payroll_tax_account || '-'
     document.getElementById('viewCreatedBy').textContent = data.created_by
     document.getElementById('viewCreatedAt').textContent = new Date(data.created_at).toLocaleString()
     document.getElementById('viewModifiedBy').textContent = data.modified_by
