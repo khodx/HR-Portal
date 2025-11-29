@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Company - HR Portal</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<div id="app">
+    <div id="viewCompanyView">
+        <h2>Company Details</h2>
+        <div class="detail-container">
+            <div class="detail-row">
+                <span class="detail-label">Company ID:</span>
+                <span id="viewCompanyId" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Company Name:</span>
+                <span id="viewCompanyName" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Has DBA:</span>
+                <span id="viewHasDba" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">DBA Name:</span>
+                <span id="viewDbaName" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Phone:</span>
+                <span id="viewPhone" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Address Line 1:</span>
+                <span id="viewAddress1" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Address Line 2:</span>
+                <span id="viewAddress2" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">City:</span>
+                <span id="viewCity" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">State:</span>
+                <span id="viewState" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Zip:</span>
+                <span id="viewZip" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Created By:</span>
+                <span id="viewCreatedBy" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Created At:</span>
+                <span id="viewCreatedAt" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Modified By:</span>
+                <span id="viewModifiedBy" class="detail-value"></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Modified At:</span>
+                <span id="viewModifiedAt" class="detail-value"></span>
+            </div>
+            <div class="form-buttons">
+                <button class="btn-back-form" onclick="window.location.href='/'">← Back</button>
+                <button class="btn-edit" onclick="editCompany()">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/src/company/view-company.js"></script>
+</body>
+</html>

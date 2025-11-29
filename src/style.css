@@ -220,15 +220,26 @@ body {
   }
 }
 
-@media screen and (max-width: 480px) {
-  .portal-title {
-    font-size: 20px;
+@media screen and (max-width: 768px) {
+  /* Fix View Details on mobile */
+  .detail-container {
+    width: 100%;
+    padding: 20px 15px;
   }
 
-  .data-table th,
-  .data-table td {
-    padding: 8px 6px;
-    font-size: 12px;
+  .detail-row {
+    flex-direction: column;
+  }
+
+  .detail-label {
+    width: 100%;
+    margin-bottom: 5px;
+    color: #003399;
+  }
+
+  .detail-value {
+    width: 100%;
+    padding-left: 0;
   }
 }
 /* Back Button in Form */

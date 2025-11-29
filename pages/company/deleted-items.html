@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deleted Companies - HR Portal</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<div id="app">
+    <div id="deletedItemsView">
+        <h2>Deleted Companies</h2>
+        <p class="deleted-info">Items will be permanently deleted after 30 days.</p>
+        <table id="deletedTable" class="data-table">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Deleted On</th>
+                <th>Days Left</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Data loads here -->
+            </tbody>
+        </table>
+        <div class="form-buttons" style="margin-top: 20px;">
+            <button class="btn-back-form" onclick="window.location.href='/'">← Back</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/src/company/deleted-items.js"></script>
+</body>
+</html>
