@@ -155,7 +155,7 @@ body {
 
 .form-row input,
 .form-row select {
-  padding: 16px;
+  padding: 6px;
   font-size: 18px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -392,8 +392,8 @@ h3 {
 
   .form-row input,
   .form-row select {
-    padding: 12px;
-    font-size: 16px;
+    padding: 6px;
+    font-size: 14px;
   }
 
   .btn-primary,
