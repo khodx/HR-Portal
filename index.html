@@ -144,7 +144,7 @@
           <input type="text" id="zip" maxlength="5">
         </div>
         <div class="form-buttons">
-          <button class="btn-back-form" onclick="showCompanies()">← Back</button>
+          <button class="btn-back-form" onclick="showCompanies()">Back</button>
           <button class="btn-primary" onclick="saveCompany()">Save Company</button>
           <button class="btn-secondary" onclick="showCompanies()">Cancel</button>
         </div>
@@ -152,7 +152,7 @@
 
       <!-- Cancel button always visible -->
       <div id="cancelOnly" class="form-buttons">
-        <button class="btn-back-form" onclick="showCompanies()">← Back</button>
+        <button class="btn-back-form" onclick="showCompanies()">Back</button>
         <button class="btn-secondary" onclick="showCompanies()">Cancel</button>
       </div>
     </div>
@@ -218,7 +218,7 @@
         <span id="viewModifiedAt" class="detail-value"></span>
       </div>
       <div class="form-buttons">
-        <button class="btn-back-form" onclick="showCompanies()">← Back</button>
+        <button class="btn-back-form" onclick="showCompanies()">Back</button>
         <button class="btn-edit" onclick="editCompanyFromView()">Edit</button>
       </div>
     </div>
@@ -240,11 +240,12 @@
       <!-- Data loads here -->
       </tbody>
     </table>
-    <div class="form-buttons" style="margin-top: 20px;">
-      <button class="btn-back-form" onclick="showCompaniesFromDeleted()">← Back</button>
+    <div class="form-buttons">
+      <button class="btn-back-form" onclick="showCompanies()">Back</button>
+      <button class="btn-edit" onclick="editCompanyFromView()">Edit</button>
     </div>
   </div>
 
 <script type="module" src="/src/main.js"></script>
-</body>
+</div></body>
 </html>
