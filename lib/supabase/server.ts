@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export function createServerSupabase() {
-  const cookieStore = cookies();
+export async function createClient() {
+  const cookieStore = await cookies(); // ⬅️ IMPORTANT: await cookies()
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,13 +10,16 @@ export function createServerSupabase() {
     {
       cookies: {
         getAll() {
-          // Next.js 16 cookies object returns an array-like iterator
-          return cookieStore.getAll ? cookieStore.getAll() : Array.from(cookieStore);
+          return cookieStore.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            cookieStore.set(name, value, options);
-          });
+          try {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              cookieStore.set(name, value, options);
+            });
+          } catch {
+            // ignore errors on server components — middleware handles refresh
+          }
         },
       },
     }
