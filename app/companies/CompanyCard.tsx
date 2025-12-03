@@ -1,22 +1,12 @@
 import styles from "./companies.module.css";
-import { Company } from "./company-types";
 
-export default function CompanyCard({ company }: { company: Company }) {
+export default function CompanyCard({ company }: { company: any }) {
   return (
     <div className={styles.companyRow}>
-      <div>
-        <div className={styles.companyName}>{company.legal_name}</div>
-        <div className={styles.meta}>DBA: {company.dba}</div>
-        <div className={styles.meta}>Created By: {company.created_by}</div>
-        <div className={styles.meta}>
-          Created At: {new Date(company.created_at).toLocaleString()}
-        </div>
-      </div>
-
-      <div className={styles.actions}>
-        <button className={styles.btnPrimary}>View</button>
-        <button className={styles.btnSecondary}>Edit</button>
-      </div>
+      <span className={styles.companyName}>{company.company_name}</span>
+      <span className={styles.companyDetails}>
+        ID: {company.company_id}
+      </span>
     </div>
   );
 }
