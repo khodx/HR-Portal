@@ -1,53 +1,49 @@
 // lib/supabase/server.ts
 
-import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { createServerClient } from "@supabase/ssr";
 
-/**
- * Creates the Supabase client for server components (Next.js 16 compatible)
- */
-export async function createClient() {
-  const cookieStore = await cookies();
+export function createClient() {
+  const cookieStore = cookies();
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() {
+        get(name: string) {
+          return cookieStore.get(name)?.value;
+        },
+        set(name: string, value: string, options: any) {
           try {
-            return cookieStore.getAll();
-          } catch {
-            return [];
+            cookieStore.set(name, value, options);
+          } catch (e) {
+            // ignore errors on server components
           }
         },
-        setAll(cookiesToSet) {
+        remove(name: string, options: any) {
           try {
-            cookiesToSet.forEach(({ name, value, options }) => {
-              cookieStore.set(name, value, options);
-            });
-          } catch {
-            // Ignore — middleware persists cookies on server anyway
+            cookieStore.set(name, "", { ...options, maxAge: 0 });
+          } catch (e) {
+            // ignore
           }
-        },
-      },
+        }
+      }
     }
   );
 }
 
-/**
- * Fetch all companies from Supabase
- */
+// ✅ ADD THIS FUNCTION
 export async function getCompanies() {
-  const supabase = await createClient();
+  const supabase = createClient();
 
   const { data, error } = await supabase
-    .from("Company") // ⚠️ Make sure table name matches EXACTLY
+    .from("companies")
     .select("*")
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error("❌ Error loading companies:", error);
+    console.error("Error fetching companies:", error);
     return [];
   }
 
