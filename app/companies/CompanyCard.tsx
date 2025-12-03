@@ -1,12 +1,17 @@
 import styles from "./companies.module.css";
 
-export default function CompanyCard({ company }: { company: any }) {
+interface CompanyCardProps {
+  company: any;
+}
+
+export default function CompanyCard({ company }: CompanyCardProps) {
   return (
-    <div className={styles.companyRow}>
-      <span className={styles.companyName}>{company.company_name}</span>
-      <span className={styles.companyDetails}>
-        ID: {company.company_id}
-      </span>
+    <div className={styles.row}>
+      <span className={styles.col}><strong>ID:</strong> {company.company_id}</span>
+      <span className={styles.col}><strong>Legal:</strong> {company.legal_name}</span>
+      <span className={styles.col}><strong>DBA:</strong> {company.dba}</span>
+      <span className={styles.col}><strong>Created By:</strong> {company.created_by}</span>
+      <span className={styles.col}><strong>Created At:</strong> {new Date(company.created_at).toLocaleString()}</span>
     </div>
   );
 }
